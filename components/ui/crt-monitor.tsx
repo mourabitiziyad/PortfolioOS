@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-function CRTMonitor({ children }: { children: React.ReactNode }) {
+function CRTMonitor({ children }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<div className="bg-grey rounded-lg flex flex-wrap justify-center shadow-2xl border-2 h-full">
 			<Image src="/merzouga.jpg" alt="CRT Monitor" fill objectFit='cover' className='-z-1' />
