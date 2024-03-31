@@ -5,7 +5,7 @@ import React from 'react';
 function CRTMonitor({ children }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<div className="bg-grey rounded-lg flex flex-wrap justify-center shadow-2xl border-2 h-full">
-			<Image src="/merzouga.jpg" alt="CRT Monitor" fill objectFit='cover' className='-z-1' />
+			<Image placeholder='blur' src="/merzouga-full.jpg" alt="CRT Monitor" fill style={{objectFit: 'cover'}} className='-z-1' />
 			<div className='bg-grey h-full w-full crt-glow scan-lines'></div>
 			<div className='absolute inset-0'>
 				<div className='absolute bottom-1 right-2 text-right font-light tracking-wide text-xs text-accent opacity-40 hover:opacity-100 transition duration-150 ease-in'>
