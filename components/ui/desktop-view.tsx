@@ -3,8 +3,9 @@ import React from 'react';
 import { NavBar } from './navbar';
 import { Folder } from '../folder';
 import { motion } from 'framer-motion';
+import { navigation } from '@/navigation';
 
-export function DesktopView() {
+export function DesktopView({ children }: { children: React.ReactNode }) {
 	const container = {
 		hidden: { opacity: 1, scale: 0 },
 		visible: {
@@ -37,12 +38,13 @@ export function DesktopView() {
 					initial="hidden"
 					animate="visible"
 				>
-					{['Projects', 'Projects', 'Projects'].map((title, index) => (
-						<motion.li className='h-18' key={index} variants={item}>
-							<Folder title={title} />
+					{navigation.map((nav, index) => (
+						<motion.li className='h-18' key={nav.title} variants={item}>
+							<Folder nav={nav} />
 						</motion.li>
 					))}
 				</motion.ul>
+				{children}
 			</div>
 		</div>
 	);
