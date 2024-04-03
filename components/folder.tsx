@@ -42,7 +42,9 @@ export function Folder({ title = 'Untitled' }: Readonly<{ title: string }>) {
       <LayoutGroup>
         {isOpen ? (
           <motion.div
+            className='will-change-transform will-change-opacity'
             key="open"
+            style={{ willChange: 'auto' }}
             variants={variants}
             initial="initial"
             animate="animate"
@@ -52,7 +54,9 @@ export function Folder({ title = 'Untitled' }: Readonly<{ title: string }>) {
           </motion.div>
         ) : (
           <motion.div
+            className='will-change-transform will-change-opacity'
             key="closed"
+            style={{ willChange: 'auto' }}
             variants={variants}
             initial="initial"
             animate="animate"
