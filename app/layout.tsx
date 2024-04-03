@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { CRTMonitor } from "@/components/ui/crt-monitor";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className="min-h-screen flex xl:p-24 xl:w-5/6 w-full mx-auto">
+          <div className="relative min-h-full min-w-full">
+            <CRTMonitor>
+              {children}
+            </CRTMonitor>
+          </div>
+        </div>
+      </body>
     </html>
   );
 }
