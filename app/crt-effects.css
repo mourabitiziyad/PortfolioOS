@@ -1,4 +1,4 @@
-@keyframes flicker {
+/* @keyframes flicker {
   0%,
   19.999%,
   22%,
@@ -29,4 +29,4 @@
 .scan-lines {
   background-image: linear-gradient(rgba(0, 0, 0, 0.3) 50%, transparent 50%);
   background-size: auto 2px;
-}
+} */
