@@ -1,7 +1,6 @@
 'use client';
 import React, { useState } from 'react';
 import { motion, LayoutGroup } from 'framer-motion';
-import Image from 'next/image';
 import { FolderOpenIcon } from './ui/folder-open-icon';
 import { FolderClosedIcon } from './ui/folder-closed-icon';
 
