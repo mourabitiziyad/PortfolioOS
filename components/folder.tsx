@@ -1,14 +1,31 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, LayoutGroup } from 'framer-motion';
 import { FolderOpenIcon } from './ui/folder-open-icon';
 import { FolderClosedIcon } from './ui/folder-closed-icon';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
-export function Folder({ title = 'Untitled' }: Readonly<{ title: string }>) {
-  const [isOpen, setIsOpen] = useState(false);
+export function Folder({ nav }: Readonly<{
+  nav: {
+    title: string;
+    id: string;
+    path: string;
+    icon: string;
+  }
+}>) {
+  const path = usePathname(); // i want to have the folder open by default if the path matches the title
+
+  const [isOpen, setIsOpen] = useState(
+    path === `/desktop${nav.path}`
+  );
+
+  useEffect(() => {
+    setIsOpen(path === `/desktop${nav.path}`)
+  }, [path]);
 
   const handleButtonClick = () => {
-    setIsOpen(!isOpen);
+    // setIsOpen(path === `/desktop${nav.path}`)
   };
 
   const variants = {
@@ -35,7 +52,8 @@ export function Folder({ title = 'Untitled' }: Readonly<{ title: string }>) {
   };
 
   return (
-    <button
+    <Link
+      href={`/desktop${nav.path}`}
       className="flex flex-col items-center justify-center m-4 box-border h-20 w-16"
       tabIndex={0}
       onClick={handleButtonClick}
@@ -66,11 +84,12 @@ export function Folder({ title = 'Untitled' }: Readonly<{ title: string }>) {
           >
             {/* <Image className='h-50 w-50' loading="eager" src={'/folder-closed.svg'} alt='Folder' width={50} height={50} /> */}
             <FolderClosedIcon />
+            {/* {path} /desktop{nav.path} */}
           </motion.div>
         )}
       </LayoutGroup>
-      <p className='text-xs font-semiBold text-white'>{title}</p>
-    </button>
+      <p className='text-xs font-semiBold text-white'>{nav.title}</p>
+    </Link>
   );
 }
 
