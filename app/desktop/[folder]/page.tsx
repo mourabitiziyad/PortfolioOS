@@ -11,7 +11,7 @@ function PageContent({ title }: Readonly<{ title: string }>) {
   );
 }
 
-export default function Page({ params }: Readonly<{ folder: string }>) {
+export default function Page({ params }: Readonly<{ params: { folder: string } }>) {
   switch (params.folder) {
     case "projects":
       return <PageContent title="Projects" />;
