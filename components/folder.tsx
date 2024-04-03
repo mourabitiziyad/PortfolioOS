@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { motion, LayoutGroup } from 'framer-motion';
 import Image from 'next/image';
+import { FolderOpenIcon } from './ui/folder-open-icon';
+import { FolderClosedIcon } from './ui/folder-closed-icon';
 
 export function Folder({ title = 'Untitled' }: Readonly<{ title: string }>) {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,7 +52,8 @@ export function Folder({ title = 'Untitled' }: Readonly<{ title: string }>) {
             animate="animate"
             exit="exit"
           >
-            <Image className='h-50 w-50' loading='eager' placeholder='blur' blurDataURL='/folder-closed.svg' src={'/folder-open-paper.svg'} alt='Folder' width={50} height={50} />
+            {/* <Image className='h-50 w-50' loading='eager' placeholder='blur' blurDataURL='/folder-closed.svg' src={'/folder-open-paper.svg'} alt='Folder' width={50} height={50} /> */}
+            <FolderOpenIcon />
           </motion.div>
         ) : (
           <motion.div
@@ -62,7 +65,8 @@ export function Folder({ title = 'Untitled' }: Readonly<{ title: string }>) {
             animate="animate"
             exit="exit"
           >
-            <Image className='h-50 w-50' loading="eager" src={'/folder-closed.svg'} alt='Folder' width={50} height={50} />
+            {/* <Image className='h-50 w-50' loading="eager" src={'/folder-closed.svg'} alt='Folder' width={50} height={50} /> */}
+            <FolderClosedIcon />
           </motion.div>
         )}
       </LayoutGroup>
