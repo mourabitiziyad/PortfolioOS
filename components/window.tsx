@@ -19,7 +19,7 @@ export const Window = ({ children }: { children: React.ReactNode }) => {
         <div className="flex-none relative">
           <MobileOnlyBar />
         </div>
-        <div className="flex-1">
+        <div className="flex-1 overflow-auto">
           {children}
         </div>
       </div>
