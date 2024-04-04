@@ -38,5 +38,5 @@ export function Clock({ className }: Readonly<{ className?: string }>) {
     hourCycle: 'h23',
   }).replace(/,/g, '');
 
-  return <div className={className}>{formattedDate}</div>;
+  return <div className={className} suppressHydrationWarning>{formattedDate}</div>;
 }
