@@ -3,13 +3,13 @@ export const navigation = [
 		title: 'Ziyad',
 		id: 'ziyad',
 		path: '/about',
-		icon: 'user',
+		icon: 'folder',
 	},
 	{
 		title: 'Studies',
 		id: 'studies',
 		path: '/studies',
-		icon: 'graduation-cap',
+		icon: 'folder',
 	},
 	{
 		title: 'Projects',
@@ -17,4 +17,10 @@ export const navigation = [
 		path: '/projects',
 		icon: 'folder',
 	},
+	{
+		title: 'CV',
+		id: 'CV',
+		path: '/CV',
+		icon: 'file',
+	}
 ]
