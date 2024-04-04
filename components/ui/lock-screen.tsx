@@ -42,7 +42,7 @@ export function LockScreen() {
 						animate="visible"
 						exit={isOpen ? "exit" : "hidden"}
 					>
-						Currently Cooking
+						Ziyad Mourabiti — Currently Cooking
 					</MotionP>
 					<MotionH1
 						className="text-2xl sm:text-3xl md:text-4xl font-semibold text-white text-center"
