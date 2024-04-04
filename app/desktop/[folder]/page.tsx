@@ -12,7 +12,7 @@ function PageContent({ title }: Readonly<{ title: string }>) {
     <Window>
       <div className="p-4">
         <h1 className="text-2xl font-bold">{title}</h1>
-        <p className="text-gray-500">This is a simple example of a dynamic route.</p>
+        <p className="text-gray-500">🚧 Work in Progress 🚧</p>
       </div>
     </Window>
   );
@@ -76,14 +76,14 @@ function About() {
   return (
     <Window>
       <motion.div
-        className="border-2 h-full w-full md:w-2/3 bg-white flex justify-center mx-auto"
+        className="relative border-2 h-full w-full md:w-2/3 bg-white flex justify-center mx-auto"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
       >
-        <div className="p-4">
+        <div className="relative p-4 border-8 overflow-y-scroll">
           <motion.ul
-            className='h-full'
+            className='w-full'
             variants={container}
             initial="hidden"
             animate="visible"
@@ -132,8 +132,8 @@ export default function Page({ params }: Readonly<{ params: { folder: string } }
   switch (params.folder) {
     case "projects":
       return <PageContent title="Projects" />;
-    case "studies":
-      return <PageContent title="Studies" />;
+    case "skills":
+      return <PageContent title="Skills" />;
     case "about":
       return <About />;
     case "CV":
