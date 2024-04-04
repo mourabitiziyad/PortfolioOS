@@ -9,7 +9,7 @@ import Image from "next/image";
 export function MobileOnlyBar() {
   const path = usePathname();
   return (
-    <div className="w-full px-4 bg-slate-300 py-2">
+    <div className="w-full px-4 bg-slate-300 py-2 overflow-x-scroll no-scrollbar">
       <div className="flex gap-2 items-center">
         <p className="text-black font-medium text-xs">Menus</p>
         {navigation
