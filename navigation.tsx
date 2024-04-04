@@ -22,5 +22,11 @@ export const navigation = [
 		id: 'CV',
 		path: '/CV',
 		icon: 'file',
+	},
+	{
+		title: 'Blog',
+		id: 'blog',
+		path: '/blog',
+		icon: 'file',
 	}
 ]
