@@ -6,6 +6,7 @@ import { FolderClosedIcon } from './ui/folder-closed-icon';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { FileIcon } from './ui/file-icon';
+import Image from 'next/image';
 
 export function Folder({ nav }: Readonly<{
   nav: {
@@ -96,7 +97,10 @@ export function Folder({ nav }: Readonly<{
           </div>
         )
       }
-      <p className='text-xs font-semiBold text-white'>{nav.title}</p>
+      <div className='flex content-center'>
+      <p className='text-xs font-semiBold text-white mr-1'>{nav.title}</p>
+      {nav.id === 'blog' && <Image height={12} width={12} src="/white-external-icon.svg" alt="External" />}
+      </div>
     </Link>
   );
 }
