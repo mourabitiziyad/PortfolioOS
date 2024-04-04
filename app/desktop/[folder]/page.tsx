@@ -117,7 +117,7 @@ function About() {
               </p>
             </motion.li>
             <motion.li variants={item}>
-              <p className="text-gray-800 text-sm mb-8">
+              <p className="text-gray-800 text-sm mb-12">
                 In my free time, I love watching the Premier League, my national team, and Liverpool. I play Chess, video games (FIFA, Super Smash Bros., GTA), and I am a massive sucker for Hip-hop. Other than that, I am always up for a good conversation.
               </p>
             </motion.li>
