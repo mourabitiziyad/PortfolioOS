@@ -6,9 +6,9 @@ export const navigation = [
 		icon: 'folder',
 	},
 	{
-		title: 'Studies',
-		id: 'studies',
-		path: '/studies',
+		title: 'Skills',
+		id: 'skills',
+		path: '/skills',
 		icon: 'folder',
 	},
 	{
