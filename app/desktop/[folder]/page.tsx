@@ -12,7 +12,7 @@ function PageContent({ title }: Readonly<{ title: string }>) {
     <Window>
       <div className="p-4">
         <h1 className="text-2xl font-bold">{title}</h1>
-        <p className="text-gray-500">🚧 Work in Progress 🚧</p>
+        <p className="text-gray-500">🚧 Work NOT in Progress -Studies :/- 🚧</p>
       </div>
     </Window>
   );
@@ -97,7 +97,7 @@ function About() {
               </h3>
             </motion.li>
             <motion.li variants={item}>
-              <p className="text-gray-800 text-sm mb-4">
+              <p className="text-gray-800 text-sm mb-4 prose">
                 Hi, I am passionate about quite a few things, so it is not quite easy to master one area, but I am trying to get there. I have garnered <span className="font-bold">4+ years</span> of experience in software development, automation, and graphic design and <span className="font-bold">5+ years</span> of experience in mixed management domains that involve people and products. I also have been passionate about Tech as a whole for more than 10 years now, still got a lot to learn, though.
               </p>
             </motion.li>
