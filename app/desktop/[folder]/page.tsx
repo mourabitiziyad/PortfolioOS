@@ -91,43 +91,63 @@ const projectsData = [
     title: "PV Detection via Super-Resolution",
     org: "Master's Thesis @ TUM",
     date: "2025",
-    description: "Used Generative AI to enhance satellite imagery resolution for better photovoltaic panel detection."
+    description: "Used Generative AI to enhance satellite imagery resolution for better photovoltaic panel detection.",
+    links: [
+      { label: "GitHub", url: "https://github.com/mourabitiziyad/pv-sr-detection-thesis" },
+      { label: "Slides", url: "https://www.canva.com/design/DAGnnEyTTQ0/BEZHBZHIJEW-8TpCiknySw/view" }
+    ]
   },
   {
     title: "Security Compliance Assessment",
     org: "Siemens AG (Co-op)",
     date: "Apr – Aug 2024",
-    description: "Built a tool to help developers and security reviewers visualize and evaluate compliance artifacts more efficiently."
+    description: "Built a tool to help developers and security reviewers visualize and evaluate compliance artifacts more efficiently.",
+    links: []
   },
   {
     title: "GenAI for Crops Breeding Platform",
     org: "NoMaze (Application Project)",
     date: "Apr – Oct 2024",
-    description: "Refactored a data-driven AI platform and added an LLM layer that lets domain experts explore data and build pipelines through conversation."
+    description: "Refactored a data-driven AI platform and added an LLM layer that lets domain experts explore data and build pipelines through conversation.",
+    links: [
+      { label: "Slides", url: "https://www.canva.com/design/DAGUg4CaYsE/coqAtbFqhTRr5enign29yA/view" }
+    ]
   },
   {
     title: "DelayBahn",
     org: "TUM Course Project",
     date: "Dec 2023",
-    description: "Distributed web app for European travel planning with Deutsche Bahn delay predictions. Processed 2M+ trips using a T3 stack."
+    description: "Distributed web app for European travel planning with Deutsche Bahn delay predictions. Processed 2M+ trips using a T3 stack.",
+    links: [
+      { label: "GitHub", url: "https://github.com/mourabitiziyad/delaybahn" }
+    ]
   },
   {
     title: "Jury",
     org: "Al Akhawayn University",
     date: "Apr 2023",
-    description: "Digital evaluation platform for capstone presentations. Next.js + Supabase, deployed on Vercel."
+    description: "Digital evaluation platform for capstone presentations. Next.js + Supabase, deployed on Vercel.",
+    links: [
+      { label: "Live", url: "https://jury.vercel.app/" }
+    ]
   },
   {
     title: "Plato 2.0",
     org: "Quasara / Xpreneurs Incubator",
     date: "Jun 2023 – Mar 2024",
-    description: "Semantic search over 100k–1M+ images. Built the full stack with Next.js, FastAPI, and AWS."
+    description: "Semantic search over 100k–1M+ images. Built the full stack with Next.js, FastAPI, and AWS.",
+    links: []
   },
   {
     title: "UCI Chess Engine",
     org: "Bachelor's Capstone @ AUI",
     date: "2022",
-    description: "Open-source magic-bitboard chess engine in C++. Implements UCI protocol for compatibility with chess GUIs."
+    description: "Open-source magic-bitboard chess engine in C++. Implements UCI protocol for compatibility with chess GUIs.",
+    links: [
+      { label: "GitHub", url: "https://github.com/mourabitiziyad/Chess-Engine" },
+      { label: "Paper", url: "https://www.researchgate.net/publication/363350578_AN_OPEN-SOURCE_MAGIC_BITBOARDS_IMPLEMENTATION_OF_A_CHESS_ENGINE" },
+      { label: "Slides", url: "https://www.canva.com/design/DAGDW5UhEzo/ZtXOqrdhcCpsokf9LVtzhw/view" }
+    ]
   },
 ];
 
@@ -181,6 +201,21 @@ function Projects() {
                 </div>
                 <p className="text-xs text-gray-600 mb-2 italic">{project.org}</p>
                 <p className="text-xs text-gray-700">{project.description}</p>
+                {project.links.length > 0 && (
+                  <div className="flex gap-3 mt-2">
+                    {project.links.map((link) => (
+                      <a
+                        key={link.label}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs text-blue-600 hover:underline"
+                      >
+                        {link.label} →
+                      </a>
+                    ))}
+                  </div>
+                )}
               </motion.li>
             ))}
           </motion.ul>
