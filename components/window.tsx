@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDragControls, motion } from "framer-motion";
 import { MotionDiv } from "./motion-div";
 import { MobileOnlyBar } from "./ui/mobile-only-bar";
@@ -10,11 +10,15 @@ export const Window = ({ children }: { children: React.ReactNode }) => {
 
 
   const path = usePathname();
-  const parentSize = { width: typeof window !== 'undefined' ? window.innerWidth : 500, height: typeof window !== 'undefined' ? window.innerHeight : 500 };
+  const [parentSize, setParentSize] = useState({ width: 500, height: 500 });
   const dragControls = useDragControls();
 
   // Initialize size as percentages
   const [size, setSize] = useState({ width: 99.9, height: 90 });
+
+  useEffect(() => {
+    setParentSize({ width: window.innerWidth, height: window.innerHeight });
+  }, []);
 
   function startDrag(event: PointerEvent | React.PointerEvent<Element>) {
     dragControls.start(event, { snapToCursor: false });

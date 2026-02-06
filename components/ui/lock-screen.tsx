@@ -1,12 +1,16 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MotionDiv, MotionH1, MotionP } from '../motion-div';
 import { Spinner } from './spinner';
 import { useRouter } from 'next/navigation';
 
 export function LockScreen() {
 	const [isOpen, setIsOpen] = useState(false);
-	const router = useRouter()
+	const router = useRouter();
+
+	useEffect(() => {
+		router.prefetch('/desktop');
+	}, [router]);
 	// Define variants for the animations
 	const containerVariants = {
 		hidden: { opacity: 0, y: 20 },
@@ -23,9 +27,6 @@ export function LockScreen() {
 
 	return (
 		<MotionDiv
-			onLoad={() => {
-				router.prefetch('/desktop')
-			}}
 			className="flex flex-col justify-center items-center h-full w-full"
 			variants={containerVariants}
 			initial="hidden"
@@ -42,7 +43,7 @@ export function LockScreen() {
 						animate="visible"
 						exit={isOpen ? "exit" : "hidden"}
 					>
-						Ziyad Mourabiti — Currently Cooking
+						Ziyad Mourabiti — Full-Stack SWE @ SAP
 					</MotionP>
 					<MotionH1
 						className="text-2xl sm:text-3xl md:text-4xl font-semibold text-white text-center"

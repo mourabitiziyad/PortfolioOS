@@ -18,6 +18,178 @@ function PageContent({ title }: Readonly<{ title: string }>) {
   );
 }
 
+const skillsData = [
+  { category: "Core Engineering", skills: ["TypeScript", "JavaScript", "Python", "SQL", "Bash"] },
+  { category: "Web & Platform", skills: ["React", "Next.js", "Node.js", "tRPC", "Prisma", "React Query", "REST APIs"] },
+  { category: "Architecture & Cloud", skills: ["Microservices", "Distributed Systems", "AWS", "GCP", "CI/CD (GitHub Actions)"] },
+  { category: "Data & Analysis", skills: ["Pandas", "NumPy", "PostgreSQL", "MongoDB", "Tableau"] },
+  { category: "Quality & Tooling", skills: ["Git", "Jest", "React Testing Library", "LaTeX"] },
+];
+
+function Skills() {
+  const container = {
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.2,
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const item = {
+    hidden: { x: -30, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: { duration: 0.3 }
+    }
+  };
+
+  return (
+    <Window>
+      <motion.div
+        className="relative h-full w-full md:w-2/3 bg-white flex justify-center mx-auto"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <div className="relative p-6 overflow-y-scroll w-full">
+          <h1 className="text-2xl font-bold mb-6">Skills</h1>
+          <motion.ul
+            className="space-y-6"
+            variants={container}
+            initial="hidden"
+            animate="visible"
+          >
+            {skillsData.map((category) => (
+              <motion.li key={category.category} variants={item}>
+                <h2 className="text-sm font-semibold text-gray-700 mb-2">{category.category}</h2>
+                <div className="flex flex-wrap gap-2">
+                  {category.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-3 py-1 bg-gray-100 text-gray-800 text-xs rounded-full border border-gray-200"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </motion.li>
+            ))}
+          </motion.ul>
+        </div>
+      </motion.div>
+    </Window>
+  );
+}
+
+const projectsData = [
+  {
+    title: "PV Detection via Super-Resolution",
+    org: "Master's Thesis @ TUM",
+    date: "2025",
+    description: "Used Generative AI to enhance satellite imagery resolution for better photovoltaic panel detection."
+  },
+  {
+    title: "Security Compliance Assessment",
+    org: "Siemens AG (Co-op)",
+    date: "Apr – Aug 2024",
+    description: "Built a tool to help developers and security reviewers visualize and evaluate compliance artifacts more efficiently."
+  },
+  {
+    title: "GenAI for Crops Breeding Platform",
+    org: "NoMaze (Application Project)",
+    date: "Apr – Oct 2024",
+    description: "Refactored a data-driven AI platform and added an LLM layer that lets domain experts explore data and build pipelines through conversation."
+  },
+  {
+    title: "DelayBahn",
+    org: "TUM Course Project",
+    date: "Dec 2023",
+    description: "Distributed web app for European travel planning with Deutsche Bahn delay predictions. Processed 2M+ trips using a T3 stack."
+  },
+  {
+    title: "Jury",
+    org: "Al Akhawayn University",
+    date: "Apr 2023",
+    description: "Digital evaluation platform for capstone presentations. Next.js + Supabase, deployed on Vercel."
+  },
+  {
+    title: "Plato 2.0",
+    org: "Quasara / Xpreneurs Incubator",
+    date: "Jun 2023 – Mar 2024",
+    description: "Semantic search over 100k–1M+ images. Built the full stack with Next.js, FastAPI, and AWS."
+  },
+  {
+    title: "UCI Chess Engine",
+    org: "Bachelor's Capstone @ AUI",
+    date: "2022",
+    description: "Open-source magic-bitboard chess engine in C++. Implements UCI protocol for compatibility with chess GUIs."
+  },
+];
+
+function Projects() {
+  const container = {
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.2,
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.3 }
+    }
+  };
+
+  return (
+    <Window>
+      <motion.div
+        className="relative h-full w-full md:w-2/3 bg-white flex justify-center mx-auto"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <div className="relative p-6 overflow-y-scroll w-full">
+          <h1 className="text-2xl font-bold mb-6">Projects</h1>
+          <motion.ul
+            className="space-y-4"
+            variants={container}
+            initial="hidden"
+            animate="visible"
+          >
+            {projectsData.map((project) => (
+              <motion.li
+                key={project.title}
+                variants={item}
+                className="p-4 border border-gray-200 rounded-lg bg-gray-50"
+              >
+                <div className="flex justify-between items-start mb-2">
+                  <h2 className="text-sm font-semibold text-gray-800">{project.title}</h2>
+                  <span className="text-xs text-gray-500">{project.date}</span>
+                </div>
+                <p className="text-xs text-gray-600 mb-2 italic">{project.org}</p>
+                <p className="text-xs text-gray-700">{project.description}</p>
+              </motion.li>
+            ))}
+          </motion.ul>
+        </div>
+      </motion.div>
+    </Window>
+  );
+}
+
 function NotFound() {
   return (
     <Window>
@@ -93,32 +265,27 @@ function About() {
             </motion.li>
             <motion.li variants={item}>
               <h3 className="text-gray-800 italic mb-4 text-xs">
-                TLDR; I am studying for a Masters in Data Engineering & Analytics @ TUM. I have 10+ yrs of experience in tech, and 4+ yrs of development and management experience. Read on for some insights on myself, or navigate the menus for individual details.
+                TLDR; MSc Data Engineering & Analytics @ TUM (2025). Full-Stack SWE at SAP SE. 10+ years in tech, 5+ in software development.
               </h3>
             </motion.li>
             <motion.li variants={item}>
               <p className="text-gray-800 text-sm mb-4 prose">
-                Hi, I am passionate about quite a few things, so it is not quite easy to master one area, but I am trying to get there. I have garnered <span className="font-bold">4+ years</span> of experience in software development, automation, and graphic design and <span className="font-bold">5+ years</span> of experience in mixed management domains that involve people and products. I also have been passionate about Tech as a whole for more than 10 years now, still got a lot to learn, though.
+                I build things across the stack — from data pipelines to polished UIs. Over the years, I have accumulated <span className="font-bold">5+ years</span> of hands-on development experience and roughly the same in roles involving product and people management. Tech has been a constant for over a decade now.
               </p>
             </motion.li>
             <motion.li variants={item}>
               <p className="text-gray-800 text-sm mb-4">
-                After getting my Bachelors degree in Computer Science (with a minor in Communication Studies) at Al Akhawayn University, I spent a year doing freelance work in graphic design and software development, I also worked as a teaching assistant in Database Systems. One long visa process later in parallel, I moved to Germany to pursue a Masters degree in Data Engineering and Analytics at the Technical University of Munich.
+                I did my BSc in Computer Science (minor in Communication Studies, Summa Cum Laude) at Al Akhawayn University in Morocco. After a year of freelancing and teaching Database Systems, I moved to Germany for my Masters at TUM. My thesis explored using Generative AI to enhance satellite imagery for solar panel detection. Now I am at SAP SE, working on the Built-In Support platform.
               </p>
             </motion.li>
             <motion.li variants={item}>
               <p className="text-gray-800 text-sm mb-4">
-                I like working in fast-paced envioronments but I am also driven by motivation and good team communication. I always see interest in learning new things within a team as I consider myself a goal-oriented person, prioritising collective success.
-              </p>
-            </motion.li>
-            <motion.li variants={item}>
-              <p className="text-gray-800 text-sm mb-4">
-                Generally, I am always on the lookout for opportunities in the tech industry, be it in software development, data engineering, or product management.
+                I work best in teams that move fast and communicate well. I am goal-oriented and care more about collective wins than individual credit.
               </p>
             </motion.li>
             <motion.li variants={item}>
               <p className="text-gray-800 text-sm mb-12">
-                In my free time, I love watching the Premier League, my national team, and Liverpool. I play Chess, video games (FIFA, Super Smash Bros., GTA), and I am a massive sucker for Hip-hop. Other than that, I am always up for a good conversation.
+                Outside work: Liverpool FC, the Atlas Lions, chess, FIFA, Smash Bros, and hip-hop. Always down for a good conversation.
               </p>
             </motion.li>
           </motion.ul>
@@ -131,9 +298,9 @@ function About() {
 export default function Page({ params }: Readonly<{ params: { folder: string } }>) {
   switch (params.folder) {
     case "projects":
-      return <PageContent title="Projects" />;
+      return <Projects />;
     case "skills":
-      return <PageContent title="Skills" />;
+      return <Skills />;
     case "about":
       return <About />;
     case "CV":
