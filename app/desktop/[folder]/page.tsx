@@ -153,7 +153,7 @@ const projectsData = [
       "Refactored a data-driven AI platform and added an LLM layer that lets domain experts explore data and build pipelines through conversation.",
     links: [
       {
-        label: "Slides",
+        label: "Slides & Demo",
         url: "https://www.canva.com/design/DAGUg4CaYsE/coqAtbFqhTRr5enign29yA/view",
       },
     ],
