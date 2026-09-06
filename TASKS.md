@@ -28,3 +28,10 @@
   - Review the result against the approved specification.
   - Run final regression checks at mobile and desktop sizes.
   - Confirm git status and summarize any deferred dependency upgrades.
+
+- [x] 6. Add the Munich-to-Morocco architectural backdrop.
+  - Use sourced landmark geometry and scroll progress to transition behind the
+    homepage work cards.
+  - Tune the mesh, silhouettes, card contrast, mobile layout, and reduced-motion
+    behavior to match the warm editorial visual system.
+  - Run final lint/build and browser checks, then commit.

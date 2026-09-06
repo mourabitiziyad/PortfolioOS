@@ -60,6 +60,10 @@ shareable, indexable destinations. The root page may preview those sections.
   requirement.
 - Use native document scrolling on the public site.
 - On narrow screens, stack content and keep controls at least 44px tall.
+- Let a restrained architectural line study move behind the work cards,
+  transitioning with scroll from Munich's Frauenkirche to Casablanca's Hassan
+  II Mosque. It should feel atmospheric rather than like a separate 3D viewer,
+  preserve card readability, and fall back to a static state for reduced motion.
 
 ### PortfolioOS compatibility
 
@@ -125,4 +129,3 @@ practical so the two experiences do not drift.
 - Verify keyboard navigation, focus visibility, reduced-motion CSS, link targets,
   canonical metadata, JSON-LD, robots, sitemap, and real 404 behavior.
 - Confirm the worktree contains no unrelated changes.
-

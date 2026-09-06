@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ContactCta } from "@/components/site/contact-cta";
 import { FeaturedCaseStudy } from "@/components/site/featured-case-study";
+import { LandmarkMorph } from "@/components/site/landmark-morph";
 import { ProjectCard } from "@/components/site/project-card";
 import { PublicPage } from "@/components/site/public-page";
 import { SectionHeading } from "@/components/site/section-heading";
@@ -96,41 +97,65 @@ export default function Home() {
       </section>
 
       <section className="proof-strip" aria-label="Career highlights">
-        {proofPoints.map((point) => (
-          <div key={point.label}>
-            <p>{point.label}</p>
-            <strong>{point.value}</strong>
+        <div className="proof-strip-inner">
+          {proofPoints.map((point, index) => (
+            <article key={point.label}>
+              <span className="proof-index" aria-hidden="true">
+                0{index + 1}
+              </span>
+              <div>
+                <p>{point.label}</p>
+                <strong>{point.value}</strong>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <div className="work-landmark-zone">
+        <div className="work-landmark-background">
+          <LandmarkMorph />
+        </div>
+
+        <section className="page-section" id="work">
+          <SectionHeading
+            eyebrow="Selected work"
+            title="Complex systems, made useful."
+            description="Two chapters that connect product thinking, platform engineering, and applied research."
+          />
+          <div className="case-study-list">
+            {featuredWork.map((work, index) => (
+              <FeaturedCaseStudy key={work.id} work={work} index={index} />
+            ))}
           </div>
-        ))}
-      </section>
+          <div className="section-end-link">
+            <TextLink label="See the complete project archive" href="/work" />
+          </div>
+        </section>
 
-      <section className="page-section" id="work">
-        <SectionHeading
-          eyebrow="Selected work"
-          title="Complex systems, made useful."
-          description="Two chapters that connect product thinking, platform engineering, and applied research."
-        />
-        <div className="case-study-list">
-          {featuredWork.map((work, index) => (
-            <FeaturedCaseStudy key={work.id} work={work} index={index} />
-          ))}
-        </div>
-        <div className="section-end-link">
-          <TextLink label="See the complete project archive" href="/work" />
-        </div>
-      </section>
+        <section className="page-section selected-projects">
+          <SectionHeading
+            eyebrow="More shipped work"
+            title="From prototypes to platforms."
+          />
+          <div className="project-grid">
+            {projects.slice(0, 3).map((project) => (
+              <ProjectCard key={project.title} project={project} />
+            ))}
+          </div>
+        </section>
 
-      <section className="page-section selected-projects">
-        <SectionHeading
-          eyebrow="More shipped work"
-          title="From prototypes to platforms."
-        />
-        <div className="project-grid">
-          {projects.slice(0, 3).map((project) => (
-            <ProjectCard key={project.title} project={project} />
-          ))}
-        </div>
-      </section>
+        <p className="landmark-data-credit">
+          Geometry: {" "}
+          <a href="https://geodaten.bayern.de/opengeodata/" target="_blank" rel="noreferrer">
+            Bavaria LoD2
+          </a>{" "}
+          + {" "}
+          <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">
+            © OpenStreetMap contributors
+          </a>
+        </p>
+      </div>
 
       <section className="about-preview">
         <div>
