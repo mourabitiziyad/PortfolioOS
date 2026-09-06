@@ -5,7 +5,7 @@
   - Add reusable public header, section, link, and card components.
   - Verify lint and build, then commit.
 
-- [ ] 2. Build the content-first public experience.
+- [x] 2. Build the content-first public experience.
   - Replace the root lock screen with the new landing page.
   - Add `/work`, `/about`, and `/now` routes using the shared content.
   - Keep the existing CV, blog, email, GitHub, and LinkedIn destinations.
