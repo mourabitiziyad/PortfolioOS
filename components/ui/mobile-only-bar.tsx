@@ -15,7 +15,7 @@ export function MobileOnlyBar() {
         {navigation
           .filter((nav) => `/desktop${nav.path}` !== path)
           .map((nav) => (
-              <Link href={`/desktop${nav.path}`} key={nav.id} className="gap-2 flex items-center bg-accent px-2 py-1 rounded-md hover:bg-slate-100">
+              <Link href={`/desktop${nav.path}`} key={nav.id} className="min-h-11 gap-2 flex items-center bg-accent px-3 py-2 rounded-md hover:bg-slate-100">
                 {
                   nav.icon === "folder" ? (
                     <FolderOpenIcon height={20} width={20} />

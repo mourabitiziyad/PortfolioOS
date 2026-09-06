@@ -12,9 +12,10 @@ export function TextLink({ label, href, external, className }: TextLinkProps) {
       rel={external ? "noreferrer" : undefined}
     >
       <span>{label}</span>
-      <span aria-hidden="true">{external ? "↗" : "→"}</span>
+      <span className="text-link-arrow" aria-hidden="true">
+        {external ? "↗" : "→"}
+      </span>
       {external ? <span className="sr-only"> (opens in a new tab)</span> : null}
     </Link>
   );
 }
-

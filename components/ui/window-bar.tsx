@@ -8,7 +8,7 @@ import { FileIcon } from "./file-icon";
 export function WindowBar() {
   const path = usePathname();
   return (
-    <div className="h-6 w-full bg-white rounded-t-md flex justify-between">
+    <div className="h-11 md:h-6 w-full bg-white rounded-t-md flex justify-between">
       <div className="flex gap-2 items-center ml-2">
         {navigation.filter((nav) => `/desktop${nav.path}` === path)[0]?.icon === 'folder' ?
           <FolderOpenIcon height={20} width={20} />
@@ -23,8 +23,10 @@ export function WindowBar() {
         <Link
           href="/desktop"
           aria-label="Close window and return to the PortfolioOS desktop"
-          className="h-3 w-3 bg-red-500 rounded-full focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-white"
-        />
+          className="grid h-11 w-11 md:h-6 md:w-6 place-items-center rounded-full focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-white"
+        >
+          <span aria-hidden="true" className="h-3 w-3 bg-red-500 rounded-full" />
+        </Link>
       </div>
     </div>
   );

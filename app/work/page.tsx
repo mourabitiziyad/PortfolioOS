@@ -11,6 +11,12 @@ export const metadata: Metadata = {
   description:
     "Selected platform engineering, applied AI, distributed systems, and product work by Ziyad Mourabiti.",
   alternates: { canonical: "/work" },
+  openGraph: {
+    title: "Work - Ziyad Mourabiti",
+    description:
+      "Selected platform engineering, applied AI, distributed systems, and product work by Ziyad Mourabiti.",
+    url: "/work",
+  },
 };
 
 export default function WorkPage() {

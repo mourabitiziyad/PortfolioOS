@@ -90,7 +90,7 @@ export const featuredWork: FeaturedWork[] = [
     contribution:
       "I assembled the workflow from geospatial acquisition through ESRGAN, S2DR3, and Satlas enhancement, image-quality evaluation, and an interactive segmentation interface.",
     outcome:
-      "The MSc thesis became an oral presentation at ACDSA 2026 and an open collection of reusable research tools.",
+      "The study found that super-resolution improved segmentation, while perceptual image quality did not consistently predict detection performance. It later became an oral presentation at ACDSA 2026.",
     tags: ["Generative AI", "Computer vision", "Geospatial data", "Python"],
     links: [
       {
@@ -180,7 +180,7 @@ export const projects: Project[] = [
     links: [
       {
         label: "GitHub",
-        href: "https://github.com/mourabitiziyad/Chess-Engine",
+        href: "https://github.com/mourabitiziyad/Monza-Chess",
         external: true,
       },
       {
@@ -221,4 +221,3 @@ export const nowItems = [
     text: "Following Liverpool and the Atlas Lions, playing chess, FIFA, and Smash Bros, and keeping hip-hop in the rotation.",
   },
 ];
-

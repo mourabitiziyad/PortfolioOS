@@ -24,7 +24,7 @@
   - Replace the starter README with project-specific documentation.
   - Run final lint/build and browser checks, then commit.
 
-- [ ] 5. Integration review.
+- [x] 5. Integration review.
   - Review the result against the approved specification.
   - Run final regression checks at mobile and desktop sizes.
   - Confirm git status and summarize any deferred dependency upgrades.

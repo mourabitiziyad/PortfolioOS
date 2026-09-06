@@ -10,6 +10,12 @@ export const metadata: Metadata = {
   description:
     "About Ziyad Mourabiti: a Moroccan full-stack software engineer at SAP working across platforms, product, data, and applied AI.",
   alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About - Ziyad Mourabiti",
+    description:
+      "A Moroccan full-stack software engineer at SAP working across platforms, product, data, and applied AI.",
+    url: "/about",
+  },
 };
 
 const journey = [

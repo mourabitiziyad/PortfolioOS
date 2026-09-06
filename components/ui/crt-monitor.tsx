@@ -20,7 +20,7 @@ export function CRTMonitor({ children }: Readonly<{ children: React.ReactNode }>
 			animate="visible"
 		>
 			<div className="bg-grey rounded-lg flex flex-wrap justify-center shadow-2xl h-full">
-				<Image placeholder='blur' blurDataURL='/merzouga-resized.jpg' src="/merzouga-full.jpg" alt="CRT Monitor" fill style={{ objectFit: 'cover' }} className='-z-1' />
+				<Image placeholder='blur' blurDataURL='/merzouga-resized.jpg' src="/merzouga-full.jpg" alt="" fill sizes="100vw" style={{ objectFit: 'cover' }} className='-z-1' />
 				<div className='bg-grey h-full w-full crt-glow scan-lines'></div>
 				<div className='absolute inset-0'>
 					{showCredit ? (

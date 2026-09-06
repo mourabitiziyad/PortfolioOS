@@ -2,7 +2,7 @@
 import React from 'react';
 import { NavBar } from './navbar';
 import { Folder } from '../folder';
-import { motion } from 'framer-motion';
+import { motion, MotionConfig } from 'framer-motion';
 import { navigation } from '@/navigation';
 
 export function DesktopView({ children }: { children: React.ReactNode }) {
@@ -29,6 +29,7 @@ export function DesktopView({ children }: { children: React.ReactNode }) {
 		}
 	}
 	return (
+		<MotionConfig reducedMotion="user">
 		<div className='h-full w-full'>
 			<NavBar />
 			<div className='h-full xl:h-[97%] w-full flex justify-between flex-1'>
@@ -48,6 +49,7 @@ export function DesktopView({ children }: { children: React.ReactNode }) {
 				{children}
 			</div>
 		</div>
+		</MotionConfig>
 	);
 }
 

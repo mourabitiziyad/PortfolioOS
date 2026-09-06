@@ -7,6 +7,11 @@ export const metadata: Metadata = {
   title: "Now",
   description: "What Ziyad Mourabiti is working on and thinking about now.",
   alternates: { canonical: "/now" },
+  openGraph: {
+    title: "Now - Ziyad Mourabiti",
+    description: "What Ziyad Mourabiti is working on and thinking about now.",
+    url: "/now",
+  },
 };
 
 export default function NowPage() {
