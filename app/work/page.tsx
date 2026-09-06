@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Work",
   description:
     "Selected platform engineering, applied AI, distributed systems, and product work by Ziyad Mourabiti.",
+  alternates: { canonical: "/work" },
 };
 
 export default function WorkPage() {
@@ -54,4 +55,3 @@ export default function WorkPage() {
     </PublicPage>
   );
 }
-

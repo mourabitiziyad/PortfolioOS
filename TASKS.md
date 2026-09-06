@@ -18,7 +18,7 @@
     and unknown-folder handling.
   - Verify all existing desktop routes, lint, and build, then commit.
 
-- [ ] 4. Add discoverability and documentation.
+- [x] 4. Add discoverability and documentation.
   - Add canonical/Open Graph/Twitter metadata and a generated social card.
   - Add Person JSON-LD, `robots.ts`, and `sitemap.ts`.
   - Replace the starter README with project-specific documentation.

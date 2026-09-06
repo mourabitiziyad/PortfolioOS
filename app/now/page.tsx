@@ -6,6 +6,7 @@ import { nowItems } from "@/lib/portfolio";
 export const metadata: Metadata = {
   title: "Now",
   description: "What Ziyad Mourabiti is working on and thinking about now.",
+  alternates: { canonical: "/now" },
 };
 
 export default function NowPage() {

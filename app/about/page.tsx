@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "About",
   description:
     "About Ziyad Mourabiti: a Moroccan full-stack software engineer at SAP working across platforms, product, data, and applied AI.",
+  alternates: { canonical: "/about" },
 };
 
 const journey = [
@@ -93,4 +94,3 @@ export default function AboutPage() {
     </PublicPage>
   );
 }
-

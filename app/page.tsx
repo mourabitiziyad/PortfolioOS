@@ -7,10 +7,45 @@ import { PublicPage } from "@/components/site/public-page";
 import { SectionHeading } from "@/components/site/section-heading";
 import { TextLink } from "@/components/site/text-link";
 import { featuredWork, nowItems, profile, projects, proofPoints } from "@/lib/portfolio";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
+  const personJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: profile.name,
+    url: profile.siteUrl,
+    jobTitle: "Full-stack software engineer",
+    worksFor: {
+      "@type": "Organization",
+      name: "SAP",
+    },
+    alumniOf: [
+      { "@type": "CollegeOrUniversity", name: "Technical University of Munich" },
+      { "@type": "CollegeOrUniversity", name: "Al Akhawayn University" },
+    ],
+    sameAs: [
+      "https://github.com/mourabitiziyad",
+      "https://linkedin.com/in/ziyadmourabiti",
+    ],
+    knowsAbout: [
+      "Full-stack software engineering",
+      "Platform engineering",
+      "Distributed systems",
+      "Applied artificial intelligence",
+    ],
+  };
+
   return (
     <PublicPage>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+      />
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero-copy">
           <p className="status-line">
