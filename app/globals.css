@@ -19,8 +19,33 @@
 }
 
 body {
-  overflow: hidden;
   margin: 0;
+}
+
+.portfolio-os-shell {
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.portfolio-os-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-width: 1280px) {
+  .portfolio-os-shell {
+    display: flex;
+    width: 83.333333%;
+    margin-inline: auto;
+    padding: 6rem;
+  }
+
+  .portfolio-os-frame {
+    min-width: 100%;
+    min-height: 100%;
+  }
 }
 
 * {

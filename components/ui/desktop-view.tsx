@@ -33,7 +33,8 @@ export function DesktopView({ children }: { children: React.ReactNode }) {
 			<NavBar />
 			<div className='h-full xl:h-[97%] w-full flex justify-between flex-1'>
 				<motion.ul
-					className='h-full'
+					className='hidden h-full md:block'
+					aria-label="PortfolioOS desktop navigation"
 					variants={container}
 					initial="hidden"
 					animate="visible"

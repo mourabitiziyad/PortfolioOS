@@ -24,7 +24,7 @@ export function Folder({ nav }: Readonly<{
 
   useEffect(() => {
     setIsOpen(path === `/desktop${nav.path}`)
-  }, [path]);
+  }, [nav.path, path]);
 
   const folderVariants = {
     initial: {
@@ -53,7 +53,7 @@ export function Folder({ nav }: Readonly<{
     <Link
       href={`/desktop${nav.path}`}
       className="flex flex-col items-center justify-center m-4 box-border h-20 w-16"
-      tabIndex={0}
+      aria-current={isOpen ? "page" : undefined}
     >
       {
         nav.icon === 'folder' ? (
@@ -104,4 +104,3 @@ export function Folder({ nav }: Readonly<{
     </Link>
   );
 }
-

@@ -9,7 +9,7 @@ import Image from "next/image";
 export function MobileOnlyBar() {
   const path = usePathname();
   return (
-    <div className="w-full px-4 bg-slate-300 py-2 overflow-x-scroll no-scrollbar">
+    <nav aria-label="PortfolioOS mobile navigation" className="w-full px-4 bg-slate-300 py-2 overflow-x-auto no-scrollbar md:hidden">
       <div className="flex gap-2 items-center">
         <p className="text-black font-medium text-xs">Menus</p>
         {navigation
@@ -31,6 +31,6 @@ export function MobileOnlyBar() {
             )
           )}
       </div>
-    </div>
+    </nav>
   )
 }

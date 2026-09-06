@@ -11,7 +11,7 @@
   - Keep the existing CV, blog, email, GitHub, and LinkedIn destinations.
   - Verify responsive rendering, lint, and build, then commit.
 
-- [ ] 3. Preserve and harden PortfolioOS.
+- [x] 3. Preserve and harden PortfolioOS.
   - Scope the CRT/fixed viewport layout to `/desktop`.
   - Reuse shared project/capability data where practical.
   - Improve mobile navigation, window controls, focus behavior, motion settings,
