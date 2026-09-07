@@ -53,8 +53,8 @@ export default function Home() {
             <span aria-hidden="true" /> {profile.role}
           </p>
           <h1 id="hero-title">
-            Engineering with
-            <em> range and rigor.</em>
+            I build software
+            <em> end to end.</em>
           </h1>
           <p className="hero-intro">{profile.introduction}</p>
           <div className="hero-actions">
@@ -120,8 +120,8 @@ export default function Home() {
         <section className="page-section" id="work">
           <SectionHeading
             eyebrow="Selected work"
-            title="Complex systems, made useful."
-            description="Two chapters that connect product thinking, platform engineering, and applied research."
+            title="Two projects in depth."
+            description="What I am building at SAP and what I researched for my master's thesis."
           />
           <div className="case-study-list">
             {featuredWork.map((work, index) => (
@@ -135,8 +135,8 @@ export default function Home() {
 
         <section className="page-section selected-projects">
           <SectionHeading
-            eyebrow="More shipped work"
-            title="From prototypes to platforms."
+            eyebrow="More work"
+            title="Other projects."
           />
           <div className="project-grid">
             {projects.slice(0, 3).map((project) => (
@@ -159,7 +159,7 @@ export default function Home() {
 
       <section className="about-preview">
         <div>
-          <p className="eyebrow">The person behind the systems</p>
+          <p className="eyebrow">About me</p>
           <h2>Salam, I&apos;m Ziyad.</h2>
         </div>
         <div className="about-preview-copy">
@@ -179,8 +179,8 @@ export default function Home() {
 
       <section className="now-preview" aria-labelledby="now-title">
         <div className="now-heading">
-          <p className="eyebrow">Now / September 2026</p>
-          <h2 id="now-title">What has my attention.</h2>
+          <p className="eyebrow">Currently</p>
+          <h2 id="now-title">What I&apos;m up to.</h2>
         </div>
         <div className="now-grid">
           {nowItems.map((item) => (

@@ -23,19 +23,19 @@ export default function WorkPage() {
   return (
     <PublicPage>
       <header className="page-hero">
-        <p className="eyebrow">Work / Selected systems</p>
-        <h1>Proof over buzzwords.</h1>
+        <p className="eyebrow">Work</p>
+        <h1>A few things I&apos;ve built.</h1>
         <p>
-          A closer look at the systems I have owned, researched, and shipped -
-          and the decisions that made them work.
+          A closer look at work I have owned, researched, and shipped, and the
+          decisions behind it.
         </p>
       </header>
 
       <section className="page-section page-section-first">
         <SectionHeading
           eyebrow="Featured"
-          title="Depth where it matters."
-          description="My current enterprise platform work and the research system behind my master's thesis."
+          title="Two projects in depth."
+          description="What I am building at SAP and what I researched for my master's thesis."
         />
         <div className="case-study-list">
           {featuredWork.map((work, index) => (
@@ -46,9 +46,9 @@ export default function WorkPage() {
 
       <section className="page-section selected-projects">
         <SectionHeading
-          eyebrow="Archive"
-          title="Other things I have built."
-          description="Products, research tools, and systems across different teams and stages."
+          eyebrow="More work"
+          title="Other projects."
+          description="Products and research tools I have built with different teams."
         />
         <div className="project-grid project-grid-full">
           {projects.map((project) => (

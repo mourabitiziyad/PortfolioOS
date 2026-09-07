@@ -19,10 +19,9 @@ export default function NowPage() {
     <PublicPage>
       <header className="page-hero now-page-hero">
         <p className="eyebrow">Now / Updated September 2026</p>
-        <h1>A small snapshot of the present.</h1>
+        <h1>What I&apos;m up to.</h1>
         <p>
-          Portfolios record finished work. This page keeps a little space for
-          what is still moving.
+          A short update on my work, research, and life outside the screen.
         </p>
       </header>
 
@@ -39,7 +38,7 @@ export default function NowPage() {
       </section>
 
       <section className="now-principle">
-        <p className="eyebrow">A working principle</p>
+        <p className="eyebrow">How I try to work</p>
         <blockquote>
           Make the system legible. Make the trade-offs explicit. Leave the code
           and the team stronger than you found them.

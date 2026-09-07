@@ -21,17 +21,17 @@ export const metadata: Metadata = {
 const journey = [
   {
     period: "Morocco",
-    title: "Curiosity became a craft",
+    title: "Al Akhawayn and teaching",
     text: "I studied computer science and communication at Al Akhawayn University, graduated Summa Cum Laude, then returned to teach database systems while building software for university and public-sector teams.",
   },
   {
     period: "Munich",
-    title: "Data met product engineering",
+    title: "TUM and applied AI",
     text: "At TUM, I focused on data engineering, distributed systems, and applied AI. Projects ranged from railway-delay prediction to conversational crop-breeding tools and photovoltaic detection from satellite imagery.",
   },
   {
     period: "Today",
-    title: "Building dependable platforms",
+    title: "SAP Built-In Support",
     text: "At SAP, I own features across requirements, planning, threat modeling, and implementation for Built-In Support. I like work where product judgment and technical depth reinforce each other.",
   },
 ];
@@ -40,8 +40,8 @@ export default function AboutPage() {
   return (
     <PublicPage>
       <header className="page-hero about-hero">
-        <p className="eyebrow">About / The longer version</p>
-        <h1>Born in Morocco. Building in Germany.</h1>
+        <p className="eyebrow">About</p>
+        <h1>Salam, I&apos;m Ziyad.</h1>
         <p>
           I am a full-stack engineer who enjoys the whole arc of a problem:
           understanding it, shaping the system, shipping it, and helping the
@@ -50,7 +50,7 @@ export default function AboutPage() {
       </header>
 
       <section className="page-section page-section-first journey-section">
-        <SectionHeading eyebrow="Journey" title="The through-line is ownership." />
+        <SectionHeading eyebrow="Journey" title="So far." />
         <ol className="journey-list">
           {journey.map((item, index) => (
             <li key={item.period}>
@@ -66,7 +66,7 @@ export default function AboutPage() {
       <section className="capabilities-section">
         <SectionHeading
           eyebrow="Capabilities"
-          title="Tools follow the problem."
+          title="What I work with."
           description="I work across the stack, with the strongest overlap around product engineering, platforms, and data."
         />
         <div className="capability-grid">
