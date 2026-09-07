@@ -10,7 +10,7 @@ visual language.
 ## Requirements
 
 - Show four highlights: photovoltaic super-resolution research, the SAP d-com
-  Mannheim talk, the ACDSA 2026 oral presentation, and DelayBahn's 2M+ trip
+  Mannheim talk, the IEEE-published ACDSA 2026 research, and DelayBahn's 2M+ trip
   pipeline.
 - Make the research comparison a draggable and keyboard-operable before/after
   slider using the original Sentinel-2 and S2DR3 outputs.

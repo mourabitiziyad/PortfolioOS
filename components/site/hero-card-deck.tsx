@@ -7,7 +7,7 @@ import { useState, type CSSProperties, type KeyboardEvent } from "react";
 const cards = [
   { id: "dcom", label: "D-COM talk", file: "TALK_01", meta: "MANNHEIM · 2026" },
   { id: "research", label: "Research", file: "RESEARCH_SAMPLE_05", meta: "S2DR3 · 10×" },
-  { id: "acdesa", label: "ACDSA", file: "CONFERENCE_01", meta: "ACDSA · 2026" },
+  { id: "acdesa", label: "IEEE publication", file: "PAPER_01", meta: "IEEE · 2026" },
   { id: "delaybahn", label: "DelayBahn", file: "SYSTEM_01", meta: "2M+ TRIPS" },
 ] as const;
 
@@ -118,19 +118,19 @@ function ConferenceCard() {
   return (
     <>
       <div className="hero-card-body hero-conference-body">
-        <p className="hero-card-kicker">Research · oral presentation</p>
+        <p className="hero-card-kicker">Research · IEEE publication</p>
         <div className="hero-conference-mark" aria-hidden="true">
-          ACDSA <span>2026</span>
+          IEEE <span>2026</span>
         </div>
         <h2>Generative super-resolution for satellite-based solar mapping.</h2>
         <p className="hero-card-description">
-          The master&apos;s research became an oral presentation at ACDSA 2026.
+          Published by IEEE after an oral presentation at ACDSA 2026.
         </p>
       </div>
       <div className="hero-card-footer">
-        <span>Research presented</span>
-        <a href="/pv-sr-conference-certificate.pdf" target="_blank" rel="noreferrer">
-          View certificate ↗
+        <span>IEEE publication · ACDSA 2026</span>
+        <a href="https://ieeexplore.ieee.org/document/11467855" target="_blank" rel="noreferrer">
+          Read on IEEE ↗
           <span className="sr-only"> (opens in a new tab)</span>
         </a>
       </div>

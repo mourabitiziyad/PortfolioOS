@@ -59,7 +59,7 @@ export const socialLinks: PortfolioLink[] = [
 export const proofPoints = [
   { label: "Currently", value: "Building Built-In Support at SAP" },
   { label: "Education", value: "MSc Data Engineering & Analytics, TUM '25" },
-  { label: "Research", value: "Oral presenter at ACDSA 2026" },
+  { label: "Research", value: "Published by IEEE · ACDSA 2026" },
 ];
 
 export const featuredWork: FeaturedWork[] = [
@@ -90,9 +90,14 @@ export const featuredWork: FeaturedWork[] = [
     contribution:
       "I assembled the workflow from geospatial acquisition through ESRGAN, S2DR3, and Satlas enhancement, image-quality evaluation, and an interactive segmentation interface.",
     outcome:
-      "The study found that super-resolution improved segmentation, while perceptual image quality did not consistently predict detection performance. It later became an oral presentation at ACDSA 2026.",
+      "The study found that super-resolution improved segmentation, while perceptual image quality did not consistently predict detection performance. It was presented orally at ACDSA 2026 and published by IEEE.",
     tags: ["Generative AI", "Computer vision", "Geospatial data", "Python"],
     links: [
+      {
+        label: "IEEE publication",
+        href: "https://ieeexplore.ieee.org/document/11467855",
+        external: true,
+      },
       {
         label: "Explore the research",
         href: "https://github.com/mourabitiziyad/pv-sr-detection-thesis",
@@ -214,7 +219,7 @@ export const nowItems = [
   },
   {
     label: "In research",
-    text: "Sharing the photovoltaic super-resolution work presented at ACDSA 2026 and keeping its research tooling open.",
+    text: "Sharing the IEEE-published photovoltaic super-resolution work presented at ACDSA 2026 and keeping its research tooling open.",
   },
   {
     label: "Beyond the screen",
