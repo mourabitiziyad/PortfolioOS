@@ -7,8 +7,8 @@ const navigation = [
   { label: "Work", href: "/work" },
   { label: "About", href: "/about" },
   { label: "Now", href: "/now" },
-  { label: "CV", href: "/CV.pdf" },
-  { label: "Email", href: "mailto:mourabitiziyad@gmail.com" },
+  { label: "CV", href: "/CV.pdf", external: true },
+  { label: "Email", href: "mailto:mourabitiziyad@gmail.com", external: true },
 ];
 
 export function SiteHeader() {
@@ -28,6 +28,9 @@ export function SiteHeader() {
             aria-current={item.href.startsWith("/") && pathname === item.href ? "page" : undefined}
           >
             {item.label}
+            {item.external ? (
+              <span className="site-nav-external" aria-hidden="true">↗</span>
+            ) : null}
           </Link>
         ))}
       </nav>

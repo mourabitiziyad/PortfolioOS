@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ContactCta } from "@/components/site/contact-cta";
 import { FeaturedCaseStudy } from "@/components/site/featured-case-study";
+import { HeroCardDeck } from "@/components/site/hero-card-deck";
 import { LandmarkMorph } from "@/components/site/landmark-morph";
 import { ProjectCard } from "@/components/site/project-card";
 import { PublicPage } from "@/components/site/public-page";
@@ -47,7 +47,20 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />
-      <section className="hero" aria-labelledby="hero-title">
+      <div className="work-landmark-zone">
+        <div className="work-landmark-background">
+          <LandmarkMorph
+            showLabel={false}
+            colorZones={[
+              { selector: ".proof-strip", color: "215, 248, 93" },
+              { selector: "#work", color: "27, 24, 20" },
+              { selector: ".now-preview", color: "215, 248, 93" },
+              { selector: ".contact-cta", color: "244, 239, 229" },
+            ]}
+          />
+        </div>
+
+        <section className="hero" aria-labelledby="hero-title">
         <div className="hero-copy">
           <p className="status-line">
             <span aria-hidden="true" /> {profile.role}
@@ -67,55 +80,24 @@ export default function Home() {
           </div>
         </div>
 
-        <figure className="hero-visual">
-          <div className="hero-window-bar">
-            <span>MERZOUGA_31.0802N</span>
-            <span aria-hidden="true">● ● ●</span>
-          </div>
-          <div className="hero-image">
-            <Image
-              src="/merzouga-full.jpg"
-              alt="Golden sand dunes in Merzouga, Morocco"
-              fill
-              priority
-              sizes="(max-width: 860px) 100vw, 46vw"
-            />
-            <div className="hero-image-note">Morocco → Germany</div>
-          </div>
-          <figcaption>
-            <span>A builder shaped by two places.</span>
-            <a
-              href="https://unsplash.com/photos/dessert-illustration-yWbxfKurMH0"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Photo: Fernando Paredes Murillo
-              <span className="sr-only"> (opens in a new tab)</span>
-            </a>
-          </figcaption>
-        </figure>
-      </section>
+        <HeroCardDeck />
+        </section>
 
-      <section className="proof-strip" aria-label="Career highlights">
-        <div className="proof-strip-inner">
-          {proofPoints.map((point, index) => (
-            <article key={point.label}>
-              <span className="proof-index" aria-hidden="true">
-                0{index + 1}
-              </span>
-              <div>
-                <p>{point.label}</p>
-                <strong>{point.value}</strong>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <div className="work-landmark-zone">
-        <div className="work-landmark-background">
-          <LandmarkMorph />
-        </div>
+        <section className="proof-strip" aria-label="Career highlights">
+          <div className="proof-strip-inner">
+            {proofPoints.map((point, index) => (
+              <article key={point.label}>
+                <span className="proof-index" aria-hidden="true">
+                  0{index + 1}
+                </span>
+                <div>
+                  <p>{point.label}</p>
+                  <strong>{point.value}</strong>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
 
         <section className="page-section" id="work">
           <SectionHeading
@@ -153,11 +135,18 @@ export default function Home() {
           + {" "}
           <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">
             © OpenStreetMap contributors
+          </a>{" "}
+          + {" "}
+          <a
+            href="https://sketchfab.com/3d-models/hassan-ii-mosque-casablanca-architectural-83e038c6a8664eb695a2de3ed0310bf6"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Hassan II reference by abdlilah ben (CC BY 4.0)
           </a>
         </p>
-      </div>
 
-      <section className="about-preview">
+        <section className="about-preview">
         <div>
           <p className="eyebrow">About me</p>
           <h2>Salam, I&apos;m Ziyad.</h2>
@@ -175,25 +164,26 @@ export default function Home() {
           </p>
           <TextLink label="More about me" href="/about" />
         </div>
-      </section>
+        </section>
 
-      <section className="now-preview" aria-labelledby="now-title">
-        <div className="now-heading">
-          <p className="eyebrow">Currently</p>
-          <h2 id="now-title">What I&apos;m up to.</h2>
-        </div>
-        <div className="now-grid">
-          {nowItems.map((item) => (
-            <article key={item.label}>
-              <h3>{item.label}</h3>
-              <p>{item.text}</p>
-            </article>
-          ))}
-        </div>
-        <TextLink label="Visit the Now page" href="/now" className="text-link-light" />
-      </section>
+        <section className="now-preview" aria-labelledby="now-title">
+          <div className="now-heading">
+            <p className="eyebrow">Currently</p>
+            <h2 id="now-title">What I&apos;m up to.</h2>
+          </div>
+          <div className="now-grid">
+            {nowItems.map((item) => (
+              <article key={item.label}>
+                <h3>{item.label}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+          <TextLink label="Visit the Now page" href="/now" className="text-link-light" />
+        </section>
 
-      <ContactCta />
+        <ContactCta />
+      </div>
     </PublicPage>
   );
 }

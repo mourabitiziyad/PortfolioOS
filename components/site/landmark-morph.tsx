@@ -1,10 +1,33 @@
 "use client";
 
 import landmarkPoints from "@/lib/landmark-points.json";
+import {
+  CASABLANCA_ARCHITECTURAL_LINES,
+  MUNICH_ARCHITECTURAL_LINES,
+} from "@/lib/landmark-linework";
 import { useEffect, useRef, useState } from "react";
 
 type Point3D = [number, number, number];
 type Landmark = "munich" | "casablanca";
+type LandmarkVariant = "scroll-morph" | Landmark;
+type LandmarkColorZone = { selector: string; color: string };
+
+type LandmarkMorphProps = {
+  variant?: LandmarkVariant;
+  monochromeColor?: string;
+  monochromeColorTo?: string;
+  showLabel?: boolean;
+  className?: string;
+  scrollContainerSelector?: string;
+  reverseMorph?: boolean;
+  centerX?: number;
+  centerY?: number;
+  scale?: number;
+  compactCenterX?: number;
+  compactCenterY?: number;
+  compactScale?: number;
+  colorZones?: LandmarkColorZone[];
+};
 
 const POINT_COUNT = landmarkPoints.munich.length / 3;
 const MUNICH_POINTS = landmarkPoints.munich;
@@ -34,10 +57,27 @@ function easeInOutCubic(value: number) {
     : 1 - Math.pow(-2 * value + 2, 3) / 2;
 }
 
-export function LandmarkMorph() {
+export function LandmarkMorph({
+  variant = "scroll-morph",
+  monochromeColor,
+  monochromeColorTo,
+  showLabel = true,
+  className,
+  scrollContainerSelector = ".work-landmark-zone",
+  reverseMorph = false,
+  centerX: centerXRatio,
+  centerY: centerYRatio,
+  scale = 1,
+  compactCenterX,
+  compactCenterY,
+  compactScale,
+  colorZones,
+}: LandmarkMorphProps = {}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const activeRef = useRef<Landmark>("munich");
-  const [active, setActive] = useState<Landmark>("munich");
+  const initialLandmark: Landmark = variant === "casablanca" ? "casablanca" : "munich";
+  const activeRef = useRef<Landmark>(initialLandmark);
+  const [active, setActive] = useState<Landmark>(initialLandmark);
+  const colorZonesKey = JSON.stringify(colorZones ?? []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -58,6 +98,12 @@ export function LandmarkMorph() {
     let pointerY = 0;
     let easedPointerX = 0;
     let easedPointerY = 0;
+    const monochromeStart = monochromeColor?.split(",").map(Number);
+    const monochromeEnd = (monochromeColorTo ?? monochromeColor)?.split(",").map(Number);
+    const parsedColorZones = (JSON.parse(colorZonesKey) as LandmarkColorZone[]).map((zone) => ({
+      ...zone,
+      channels: zone.color.split(",").map(Number),
+    }));
 
     const resize = () => {
       const bounds = canvas.getBoundingClientRect();
@@ -85,13 +131,22 @@ export function LandmarkMorph() {
       if (!visible) return;
 
       const elapsed = reducedMotion ? 0 : now - startTime;
-      const zone = canvas.closest<HTMLElement>(".work-landmark-zone");
+      const zone = variant === "scroll-morph"
+        ? canvas.closest<HTMLElement>(scrollContainerSelector)
+        : null;
       const zoneBounds = zone?.getBoundingClientRect();
       const scrollRange = Math.max((zoneBounds?.height ?? 0) - window.innerHeight, 1);
       const scrollProgress = zoneBounds
         ? Math.max(0, Math.min(1, -zoneBounds.top / scrollRange))
         : 0;
-      const morph = reducedMotion ? 0 : easeInOutCubic(scrollProgress);
+      const forwardMorph = variant === "casablanca"
+        ? 1
+        : variant === "munich" || reducedMotion
+          ? 0
+          : easeInOutCubic(scrollProgress);
+      const morph = variant === "scroll-morph" && reverseMorph
+        ? 1 - forwardMorph
+        : forwardMorph;
       const transitionScatter = Math.sin(morph * Math.PI);
       const nextActive: Landmark = morph < 0.5 ? "munich" : "casablanca";
 
@@ -112,10 +167,17 @@ export function LandmarkMorph() {
       const cosPitch = Math.cos(pitch);
       const sinPitch = Math.sin(pitch);
       const isCompact = width < 860;
+      const responsiveScale = isCompact ? compactScale ?? scale : scale;
       const unit =
-        Math.min(width / 8.6, height / 7.8) * (isCompact ? 0.88 : 0.7);
-      const centerX = width * (isCompact ? 0.52 : 0.73);
-      const centerY = height * (isCompact ? 0.59 : 0.63);
+        Math.min(width / 8.6, height / 7.8) * (isCompact ? 0.88 : 0.7) * responsiveScale;
+      const defaultCenterX = isCompact ? 0.52 : 0.73 - morph * 0.04;
+      const defaultCenterY = isCompact ? 0.59 - morph * 0.11 : 0.63 - morph * 0.2;
+      const centerX = width * (isCompact
+        ? compactCenterX ?? centerXRatio ?? defaultCenterX
+        : centerXRatio ?? defaultCenterX);
+      const centerY = height * (isCompact
+        ? compactCenterY ?? centerYRatio ?? defaultCenterY
+        : centerYRatio ?? defaultCenterY);
       const projectPoint = (x: number, y: number, z: number) => {
         const rotatedX = x * cosYaw - z * sinYaw;
         const rotatedZ = x * sinYaw + z * cosYaw;
@@ -176,10 +238,12 @@ export function LandmarkMorph() {
         opacity: number,
         turnMunich = false,
         edgeStep = 6,
+        lineWidth = 0.65,
+        color = "27, 24, 20",
       ) => {
         if (opacity < 0.015) return;
-        context.strokeStyle = `rgba(27, 24, 20, ${opacity})`;
-        context.lineWidth = 0.65;
+        context.strokeStyle = `rgba(${color}, ${opacity})`;
+        context.lineWidth = lineWidth;
         context.beginPath();
         for (let index = 0; index < lines.length; index += edgeStep) {
           const fromX = turnMunich ? -lines[index + 2] : lines[index];
@@ -194,8 +258,76 @@ export function LandmarkMorph() {
         context.stroke();
       };
 
-      drawLineMesh(MUNICH_LINES, 0.2 * Math.pow(1 - morph, 1.8), true, 12);
-      drawLineMesh(CASABLANCA_LINES, 0.22 * Math.pow(morph, 1.8));
+      const munichOpacity = Math.pow(1 - morph, 1.8);
+      const casablancaOpacity = Math.pow(morph, 1.8);
+      let activeMonochromeColor = monochromeStart && monochromeEnd
+        ? monochromeStart
+            .map((channel, index) => Math.round(channel + (monochromeEnd[index] - channel) * morph))
+            .join(", ")
+        : undefined;
+      if (parsedColorZones.length > 0) {
+        let contextualColor = [27, 24, 20];
+        const canvasBounds = canvas.getBoundingClientRect();
+        const modelScreenY = canvasBounds.top + centerY;
+        const transitionDistance = Math.min(180, height * 0.2);
+
+        for (const zone of parsedColorZones) {
+          const section = document.querySelector<HTMLElement>(zone.selector);
+          if (!section) continue;
+          const sectionTop = section.getBoundingClientRect().top;
+          const blend = Math.max(
+            0,
+            Math.min(1, (modelScreenY - sectionTop + transitionDistance) / (transitionDistance * 2)),
+          );
+          contextualColor = contextualColor.map((channel, index) =>
+            Math.round(channel + (zone.channels[index] - channel) * blend),
+          );
+        }
+
+        activeMonochromeColor = contextualColor.join(", ");
+      }
+      const baseLineColor = activeMonochromeColor ?? "27, 24, 20";
+      const munichAccent = activeMonochromeColor ?? "105, 65, 198";
+      const casablancaAccent = activeMonochromeColor ?? "238, 108, 61";
+      const usesSectionContrast = parsedColorZones.length > 0;
+      const baseMeshOpacity = usesSectionContrast ? 0.16 : activeMonochromeColor ? 0.18 : 0.1;
+      const detailMeshOpacity = usesSectionContrast ? 0.52 : activeMonochromeColor ? 0.58 : 0.32;
+      const haloMeshOpacity = usesSectionContrast ? 0.07 : activeMonochromeColor ? 0.1 : 0.075;
+
+      drawLineMesh(MUNICH_LINES, baseMeshOpacity * munichOpacity, true, 6, 0.65, baseLineColor);
+      drawLineMesh(CASABLANCA_LINES, baseMeshOpacity * casablancaOpacity, false, 6, 0.65, baseLineColor);
+      drawLineMesh(
+        MUNICH_ARCHITECTURAL_LINES,
+        haloMeshOpacity * munichOpacity,
+        false,
+        6,
+        2.2,
+        munichAccent,
+      );
+      drawLineMesh(
+        MUNICH_ARCHITECTURAL_LINES,
+        detailMeshOpacity * munichOpacity,
+        false,
+        6,
+        0.85,
+        baseLineColor,
+      );
+      drawLineMesh(
+        CASABLANCA_ARCHITECTURAL_LINES,
+        haloMeshOpacity * casablancaOpacity,
+        false,
+        6,
+        2.2,
+        casablancaAccent,
+      );
+      drawLineMesh(
+        CASABLANCA_ARCHITECTURAL_LINES,
+        detailMeshOpacity * casablancaOpacity,
+        false,
+        6,
+        0.85,
+        baseLineColor,
+      );
 
       projections.sort((a, b) => b.z - a.z);
 
@@ -203,22 +335,19 @@ export function LandmarkMorph() {
         if (point.index % 13 !== 0 && point.index % 37 !== 0 && point.index % 89 !== 0) continue;
         const isViolet = point.index % 37 === 0;
         const isSunset = point.index % 89 === 0;
-        const alpha = Math.max(0.2, Math.min(0.58, 0.34 + point.scale * 0.14));
-        context.fillStyle = isSunset
-          ? `rgba(238, 108, 61, ${Math.min(0.92, alpha + 0.18)})`
-          : isViolet
-            ? `rgba(105, 65, 198, ${Math.min(0.9, alpha + 0.12)})`
-            : `rgba(27, 24, 20, ${alpha})`;
+        const pointPresence = 0.3 + transitionScatter * 0.7;
+        const alpha = Math.max(0.12, Math.min(0.5, 0.3 + point.scale * 0.12)) * pointPresence;
+        context.fillStyle = activeMonochromeColor
+          ? `rgba(${activeMonochromeColor}, ${Math.min(0.72, alpha + 0.08)})`
+          : isSunset
+            ? `rgba(238, 108, 61, ${Math.min(0.92, alpha + 0.18)})`
+            : isViolet
+              ? `rgba(105, 65, 198, ${Math.min(0.9, alpha + 0.12)})`
+              : `rgba(27, 24, 20, ${alpha})`;
         context.beginPath();
         context.arc(point.x, point.y, Math.max(0.45, point.scale * 0.68), 0, Math.PI * 2);
         context.fill();
       }
-
-      context.strokeStyle = "rgba(27, 24, 20, 0.12)";
-      context.lineWidth = 0.75;
-      context.beginPath();
-      context.ellipse(centerX, height * 0.89, unit * 2.4, unit * 0.28, 0, 0, Math.PI * 2);
-      context.stroke();
 
       if (!reducedMotion) frame = window.requestAnimationFrame(draw);
     };
@@ -250,27 +379,37 @@ export function LandmarkMorph() {
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
     };
-  }, []);
+  }, [
+    centerXRatio,
+    centerYRatio,
+    compactCenterX,
+    compactCenterY,
+    compactScale,
+    colorZonesKey,
+    monochromeColor,
+    monochromeColorTo,
+    reverseMorph,
+    scale,
+    scrollContainerSelector,
+    variant,
+  ]);
+
+  const description = variant === "munich"
+    ? "A line-mesh study of Munich's Frauenkirche."
+    : variant === "casablanca"
+      ? "A line-mesh study of Casablanca's Hassan II Mosque."
+      : "A line-mesh study morphing Munich's Frauenkirche into Casablanca's Hassan II Mosque.";
 
   return (
-    <div className="landmark-morph">
-      <p className="sr-only">
-        A line-mesh study morphing Munich&apos;s Frauenkirche into Casablanca&apos;s Hassan II Mosque.
-      </p>
+    <div className={className ? `landmark-morph ${className}` : "landmark-morph"}>
+      <p className="sr-only">{description}</p>
       <canvas ref={canvasRef} aria-hidden="true" />
-      <div className="landmark-morph-compass" aria-hidden="true">
-        <span>N</span>
-        <i />
-      </div>
-      <div className="landmark-morph-active" aria-hidden="true">
-        <span>{active === "munich" ? "01 / MUNICH" : "02 / CASABLANCA"}</span>
-        <strong>{active === "munich" ? "Frauenkirche" : "Hassan II Mosque"}</strong>
-      </div>
-      <div className="landmark-morph-route" aria-hidden="true">
-        <span className={active === "munich" ? "is-active" : ""}>MUC</span>
-        <i />
-        <span className={active === "casablanca" ? "is-active" : ""}>CAS</span>
-      </div>
+      {showLabel ? (
+        <div className="landmark-morph-active" aria-hidden="true">
+          <span>{active === "munich" ? "MUNICH" : "CASABLANCA"}</span>
+          <strong>{active === "munich" ? "Frauenkirche" : "Hassan II Mosque"}</strong>
+        </div>
+      ) : null}
     </div>
   );
 }

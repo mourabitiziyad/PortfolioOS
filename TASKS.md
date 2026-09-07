@@ -35,3 +35,16 @@
   - Tune the mesh, silhouettes, card contrast, mobile layout, and reduced-motion
     behavior to match the warm editorial visual system.
   - Run final lint/build and browser checks, then commit.
+
+- [x] 7. Replace the homepage side image with an interactive proof-card deck.
+  - Add four evidence-backed cards and accessible manual navigation.
+  - Add a draggable Sentinel-2 to S2DR3 comparison.
+  - Verify responsive behavior, keyboard use, lint, and production build.
+  - Show the local result before committing or pushing.
+
+- [x] 8. Extend the landmark language into the final homepage sections.
+  - Use one canvas from the hero through Contact, morphing Munich into Casablanca
+    while adapting the same geometry's color to each section background.
+  - Verify section readability, responsive crops, reduced motion, and the
+    existing work-section morph.
+  - Show the local result before committing or pushing.

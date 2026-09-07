@@ -86,13 +86,11 @@ export default function AboutPage() {
       <section className="personal-note">
         <p className="eyebrow">Outside the work</p>
         <blockquote>
-          Football gives me the drama, chess gives me the puzzles, and hip-hop
-          usually provides the soundtrack.
+          I follow Liverpool FC and Morocco&apos;s Atlas Lions, play chess, FIFA,
+          and Smash Bros, and listen to a lot of hip-hop.
         </blockquote>
         <p>
-          I follow Liverpool FC and Morocco&apos;s Atlas Lions, play FIFA and Smash
-          Bros, and am always up for a thoughtful conversation. For the current
-          snapshot, see <Link href="/now">what I&apos;m doing now</Link>.
+          For a current snapshot, see <Link href="/now">what I&apos;m doing now</Link>.
         </p>
       </section>
 
