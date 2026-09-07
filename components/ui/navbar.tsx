@@ -1,32 +1,37 @@
-import Image from "next/image";
+import Link from "next/link";
 import { Clock } from "./clock";
-import { Suspense } from "react";
-import { Spinner } from "./spinner";
-import { MotionDiv } from "../motion-div";
+import { profile, socialLinks } from "@/lib/portfolio";
 
 export function NavBar() {
-	return (
-		<MotionDiv
-		initial={{ x: 0, y: -20, opacity: 1 }}
-		animate={{ x: 0, y: 0, opacity: 1 }}
-		transition={{ duration: 1 }}
-		 className='w-full h-6 bg-[#EBEAE3] text-black text-xs py-1 px-4 flex justify-between'>
-			<div className="flex gap-4 items-center">
-				<Suspense fallback={<Spinner />}>
-					<Image priority loading="eager" src='/favicon.ico' alt='not the apple logo' className="hover:bg-accent" style={{ objectFit: 'contain' }} width={16} height={24} />
-				</Suspense>
-				<p className="font-semibold">Dune</p>
-				<div className="hidden sm:flex gap-3 text-gray-600">
-					<a href="mailto:mourabitiziyad@gmail.com" className="hover:text-black transition-colors">Email</a>
-					<a href="https://github.com/mourabitiziyad" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">GitHub</a>
-					<a href="https://linkedin.com/in/ziyadmourabiti" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">LinkedIn</a>
-				</div>
-			</div>
-			<div>
-				<Suspense fallback={<Spinner />}>
-					<Clock />
-				</Suspense>
-			</div>
-		</MotionDiv>
-	);
+  const github = socialLinks.find((link) => link.label === "GitHub");
+  const linkedin = socialLinks.find((link) => link.label === "LinkedIn");
+
+  return (
+    <div className="os-menu-bar">
+      <div className="os-menu-brand">
+        <Link href="/desktop" className="os-home-link">
+          <span className="os-brand-mark" aria-hidden="true">ZM</span>
+          <span>PortfolioOS</span>
+        </Link>
+        <span className="os-menu-version">2026.09</span>
+      </div>
+
+      <nav className="os-menu-links" aria-label="PortfolioOS links">
+        <Link href="/">Main site</Link>
+        {github ? (
+          <a href={github.href} target="_blank" rel="noopener noreferrer">
+            GitHub <span aria-hidden="true">↗</span>
+          </a>
+        ) : null}
+        {linkedin ? (
+          <a href={linkedin.href} target="_blank" rel="noopener noreferrer">
+            LinkedIn <span aria-hidden="true">↗</span>
+          </a>
+        ) : null}
+        <a href={`mailto:${profile.email}`}>Email <span aria-hidden="true">↗</span></a>
+      </nav>
+
+      <Clock className="os-menu-clock" />
+    </div>
+  );
 }

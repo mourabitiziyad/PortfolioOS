@@ -1,55 +1,26 @@
-"use client";
 import React from 'react';
 import { NavBar } from './navbar';
 import { Folder } from '../folder';
-import { motion, MotionConfig } from 'framer-motion';
 import { navigation } from '@/navigation';
 
 export function DesktopView({ children }: { children: React.ReactNode }) {
-	const container = {
-		hidden: { opacity: 1, scale: 0 },
-		visible: {
-			opacity: 1,
-			scale: 1,
-			transition: {
-				delayChildren: 0.3,
-				staggerChildren: 0.2
-			}
-		}
-	}
-
-	const item = {
-		hidden: { x: -20, opacity: 0 },
-		visible: {
-			x: 0,
-			opacity: 1,
-			transition: {
-				duration: 0.2
-			}
-		}
-	}
 	return (
-		<MotionConfig reducedMotion="user">
-		<div className='h-full w-full'>
+		<div className="os-desktop">
 			<NavBar />
-			<div className='h-full xl:h-[97%] w-full flex justify-between flex-1'>
-				<motion.ul
-					className='hidden h-full md:block'
+			<div className="os-desktop-main">
+				<ul
+					className="os-app-rail"
 					aria-label="PortfolioOS desktop navigation"
-					variants={container}
-					initial="hidden"
-					animate="visible"
 				>
-					{navigation.map((nav, index) => (
-						<motion.li className='h-18' key={nav.title} variants={item}>
+					{navigation.map((nav) => (
+						<li key={nav.title}>
 							<Folder nav={nav} />
-						</motion.li>
+						</li>
 					))}
-				</motion.ul>
-				{children}
+				</ul>
+				<main className="os-desktop-workspace">{children}</main>
 			</div>
 		</div>
-		</MotionConfig>
 	);
 }
 

@@ -48,3 +48,13 @@
   - Verify section readability, responsive crops, reduced motion, and the
     existing work-section morph.
   - Show the local result before committing or pushing.
+
+- [x] 9. Refresh the PortfolioOS desktop experience.
+  - Expand and restyle the desktop shell, menu bar, wallpaper treatment, and
+    navigation icons.
+  - Add a useful desktop welcome panel backed by current portfolio data.
+  - Simplify and restyle windows, mobile navigation, About, Work, Now, and CV.
+  - Preserve bounded desktop window dragging and resizing without exposing
+    those interactions on mobile.
+  - Verify desktop and mobile routes, lint, and production build.
+  - Show the local result before committing or pushing.

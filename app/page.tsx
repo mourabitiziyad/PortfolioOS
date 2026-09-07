@@ -50,7 +50,6 @@ export default function Home() {
       <div className="work-landmark-zone">
         <div className="work-landmark-background">
           <LandmarkMorph
-            showLabel={false}
             colorZones={[
               { selector: ".proof-strip", color: "215, 248, 93" },
               { selector: "#work", color: "27, 24, 20" },

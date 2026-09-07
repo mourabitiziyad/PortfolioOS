@@ -5,7 +5,7 @@ import {
   CASABLANCA_ARCHITECTURAL_LINES,
   MUNICH_ARCHITECTURAL_LINES,
 } from "@/lib/landmark-linework";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 type Point3D = [number, number, number];
 type Landmark = "munich" | "casablanca";
@@ -16,7 +16,6 @@ type LandmarkMorphProps = {
   variant?: LandmarkVariant;
   monochromeColor?: string;
   monochromeColorTo?: string;
-  showLabel?: boolean;
   className?: string;
   scrollContainerSelector?: string;
   reverseMorph?: boolean;
@@ -61,7 +60,6 @@ export function LandmarkMorph({
   variant = "scroll-morph",
   monochromeColor,
   monochromeColorTo,
-  showLabel = true,
   className,
   scrollContainerSelector = ".work-landmark-zone",
   reverseMorph = false,
@@ -74,9 +72,6 @@ export function LandmarkMorph({
   colorZones,
 }: LandmarkMorphProps = {}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const initialLandmark: Landmark = variant === "casablanca" ? "casablanca" : "munich";
-  const activeRef = useRef<Landmark>(initialLandmark);
-  const [active, setActive] = useState<Landmark>(initialLandmark);
   const colorZonesKey = JSON.stringify(colorZones ?? []);
 
   useEffect(() => {
@@ -148,13 +143,6 @@ export function LandmarkMorph({
         ? 1 - forwardMorph
         : forwardMorph;
       const transitionScatter = Math.sin(morph * Math.PI);
-      const nextActive: Landmark = morph < 0.5 ? "munich" : "casablanca";
-
-      if (nextActive !== activeRef.current) {
-        activeRef.current = nextActive;
-        setActive(nextActive);
-      }
-
       easedPointerX += (pointerX - easedPointerX) * 0.035;
       easedPointerY += (pointerY - easedPointerY) * 0.035;
       context.clearRect(0, 0, width, height);
@@ -404,12 +392,6 @@ export function LandmarkMorph({
     <div className={className ? `landmark-morph ${className}` : "landmark-morph"}>
       <p className="sr-only">{description}</p>
       <canvas ref={canvasRef} aria-hidden="true" />
-      {showLabel ? (
-        <div className="landmark-morph-active" aria-hidden="true">
-          <span>{active === "munich" ? "MUNICH" : "CASABLANCA"}</span>
-          <strong>{active === "munich" ? "Frauenkirche" : "Hassan II Mosque"}</strong>
-        </div>
-      ) : null}
     </div>
   );
 }

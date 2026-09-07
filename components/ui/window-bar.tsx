@@ -1,33 +1,53 @@
 'use client';
+import type { PointerEventHandler } from 'react';
 import { usePathname } from "next/navigation";
 import { FolderOpenIcon } from "./folder-open-icon";
 import Link from "next/link";
 import { navigation } from "@/navigation";
 import { FileIcon } from "./file-icon";
 
-export function WindowBar() {
+type WindowBarProps = {
+  onPointerDown?: PointerEventHandler<HTMLDivElement>;
+  onPointerMove?: PointerEventHandler<HTMLDivElement>;
+  onPointerUp?: PointerEventHandler<HTMLDivElement>;
+  onPointerCancel?: PointerEventHandler<HTMLDivElement>;
+};
+
+export function WindowBar({
+  onPointerDown,
+  onPointerMove,
+  onPointerUp,
+  onPointerCancel,
+}: WindowBarProps) {
   const path = usePathname();
+  const current = navigation.find((nav) => `/desktop${nav.path}` === path);
+
   return (
-    <div className="h-11 md:h-6 w-full bg-white rounded-t-md flex justify-between">
-      <div className="flex gap-2 items-center ml-2">
-        {navigation.filter((nav) => `/desktop${nav.path}` === path)[0]?.icon === 'folder' ?
-          <FolderOpenIcon height={20} width={20} />
-          :
-          <FileIcon height={16} width={16} />
-        }
-        <p className="text-black text-xs capitalize">{path.split('/')[2]}</p>
-      </div>
-      <div className="flex gap-2 items-center mr-2">
-        <span aria-hidden="true" className="h-3 w-3 bg-green-500 rounded-full" />
-        <span aria-hidden="true" className="h-3 w-3 bg-yellow-500 rounded-full" />
+    <div
+      className="os-window-bar"
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={onPointerUp}
+      onPointerCancel={onPointerCancel}
+    >
+      <div className="os-window-controls">
         <Link
           href="/desktop"
           aria-label="Close window and return to the PortfolioOS desktop"
-          className="grid h-11 w-11 md:h-6 md:w-6 place-items-center rounded-full focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-white"
+          className="os-window-control os-window-control-close"
         >
-          <span aria-hidden="true" className="h-3 w-3 bg-red-500 rounded-full" />
+          <span aria-hidden="true">×</span>
         </Link>
+        <span aria-hidden="true" className="os-window-control os-window-control-minimize" />
+        <span aria-hidden="true" className="os-window-control os-window-control-expand" />
       </div>
+      <div className="os-window-title">
+        {current?.icon === 'folder'
+          ? <FolderOpenIcon height={18} width={18} />
+          : <FileIcon height={16} width={16} />}
+        <span>{current?.title ?? "PortfolioOS"}</span>
+      </div>
+      <Link href="/desktop" className="os-window-desktop-link">Desktop</Link>
     </div>
   );
 }
